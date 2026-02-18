@@ -1,0 +1,134 @@
+@import "leaflet/dist/leaflet.css";
+@import "@fontsource/geist-sans/400.css";
+@import "@fontsource/geist-sans/500.css";
+@import "@fontsource/geist-sans/600.css";
+@import "@fontsource/geist-sans/700.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --mint-50: 160 67% 94%;
+    --mint-100: 160 62% 91%;
+    --mint-200: 162 66% 81%;
+    --mint-300: 162 95% 40%;
+    --mint-400: 164 97% 36%;
+    --mint-500: 164 98% 32%;
+    --mint-600: 165 97% 30%;
+    --mint-700: 165 97% 24%;
+    --mint-800: 165 97% 18%;
+    --mint-900: 165 97% 14%;
+
+    --background: 160 67% 94%;
+    --foreground: 165 97% 14%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 165 97% 14%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 165 97% 14%;
+
+    --primary: 162 95% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 62% 91%;
+    --secondary-foreground: 165 97% 14%;
+
+    --muted: 160 30% 90%;
+    --muted-foreground: 165 40% 35%;
+
+    --accent: 164 97% 36%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 162 40% 80%;
+    --input: 162 40% 80%;
+    --ring: 162 95% 40%;
+
+    --radius: 0.625rem;
+
+    --sidebar-background: 165 97% 14%;
+    --sidebar-foreground: 160 67% 94%;
+    --sidebar-primary: 162 95% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 165 97% 24%;
+    --sidebar-accent-foreground: 160 67% 94%;
+    --sidebar-border: 165 50% 25%;
+    --sidebar-ring: 162 95% 40%;
+    --sidebar-muted: 165 40% 60%;
+
+    --chart-1: 162 95% 40%;
+    --chart-2: 164 97% 36%;
+    --chart-3: 165 97% 30%;
+    --chart-4: 165 97% 24%;
+    --chart-5: 162 66% 81%;
+
+    --status-confirmed: 162 95% 40%;
+    --status-pending: 38 92% 50%;
+    --status-cancelled: 0 84% 60%;
+    --status-open: 210 100% 50%;
+    --status-in-progress: 38 92% 50%;
+    --status-resolved: 162 95% 40%;
+    --status-closed: 165 40% 35%;
+
+    --priority-high: 0 84% 60%;
+    --priority-medium: 38 92% 50%;
+    --priority-low: 162 66% 81%;
+  }
+
+  .dark {
+    --background: 165 97% 8%;
+    --foreground: 160 67% 94%;
+    --card: 165 97% 12%;
+    --card-foreground: 160 67% 94%;
+    --popover: 165 97% 12%;
+    --popover-foreground: 160 67% 94%;
+    --primary: 162 95% 40%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 165 97% 18%;
+    --secondary-foreground: 160 67% 94%;
+    --muted: 165 50% 20%;
+    --muted-foreground: 160 40% 60%;
+    --accent: 164 97% 36%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 62% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 165 50% 25%;
+    --input: 165 50% 25%;
+    --ring: 162 95% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--border)) transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--border));
+    border-radius: 3px;
+  }
+}
