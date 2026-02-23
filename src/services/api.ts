@@ -471,7 +471,8 @@ export const authAPI = {
   },
 
   async me(): Promise<User> {
-    return fetchAPI<User>('/auth/me');
+    const response = await fetchAPI<{ user: User }>('/auth/me');
+    return response.user;
   },
 };
 

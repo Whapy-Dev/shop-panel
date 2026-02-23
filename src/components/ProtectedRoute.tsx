@@ -17,7 +17,7 @@ export default function ProtectedRoute({ children }: { children: React.ReactNode
     return <Navigate to="/login" replace />;
   }
 
-  if (user && !['retailer', 'wholesaler'].includes(user.role)) {
+  if (user && !['retailer', 'wholesaler', 'admin'].includes(user.role)) {
     logout();
     return <Navigate to="/login" replace />;
   }

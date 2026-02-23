@@ -335,7 +335,11 @@ export default function ProductsPage() {
       refetch();
     } catch (error: any) {
       console.error('Error saving product:', error);
-      toast.error(error.message || 'Error al guardar el producto');
+      if (error.response?.status === 403 && error.response?.data?.message?.includes('suscripción')) {
+        toast.error('Tu tienda requiere una suscripción activa para gestionar productos. Revisa tus planes de suscripción.');
+      } else {
+        toast.error(error.response?.data?.message || error.message || 'Error al guardar el producto');
+      }
     } finally {
       setIsSubmitting(false);
     }
