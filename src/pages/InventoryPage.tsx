@@ -227,11 +227,12 @@ export default function InventoryPage() {
                       <TableHead>Producto</TableHead>
                       <TableHead>SKU</TableHead>
                       <TableHead className="text-right">Stock Actual</TableHead>
+                      <TableHead className="text-right">Mínimo</TableHead>
                       <TableHead>Estado</TableHead>
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {lowStock.map((p) => (
+                    {lowStock.map((p: any) => (
                       <TableRow key={p.id}>
                         <TableCell className="font-medium">{p.name}</TableCell>
                         <TableCell className="font-mono text-sm">{p.sku || '-'}</TableCell>
@@ -239,6 +240,9 @@ export default function InventoryPage() {
                           <span className={`font-bold ${p.stock === 0 ? 'text-red-600' : 'text-orange-500'}`}>
                             {p.stock}
                           </span>
+                        </TableCell>
+                        <TableCell className="text-right text-gray-500">
+                          {p.stockMinimum ?? threshold}
                         </TableCell>
                         <TableCell>
                           <Badge variant={p.stock === 0 ? 'destructive' : 'outline'}>

@@ -107,6 +107,7 @@ export default function ProductsPage() {
     priceRetail: '',
     priceWholesale: '',
     stock: '',
+    stockMinimum: '',
     categoryId: '',
     isActive: true,
   });
@@ -167,6 +168,7 @@ export default function ProductsPage() {
         priceRetail: product.priceRetail.toString(),
         priceWholesale: product.priceWholesale?.toString() || '',
         stock: product.stock.toString(),
+        stockMinimum: product.stockMinimum != null ? product.stockMinimum.toString() : '0',
         categoryId: product.categoryId,
         isActive: product.isActive,
       });
@@ -187,6 +189,7 @@ export default function ProductsPage() {
         priceRetail: '',
         priceWholesale: '',
         stock: '',
+        stockMinimum: '',
         categoryId: '',
         isActive: true,
       });
@@ -256,7 +259,7 @@ export default function ProductsPage() {
       toast.error('El stock es obligatorio y no puede ser negativo');
       return;
     }
-    if (!formData.categoryId) {
+    if (!formData.categoryId && !editingProduct) {
       toast.error('Debe seleccionar una categoría');
       return;
     }
@@ -275,7 +278,8 @@ export default function ProductsPage() {
           ? parseFloat(formData.priceWholesale)
           : undefined,
         stock: parseInt(formData.stock),
-        categoryId: formData.categoryId,
+        stockMinimum: formData.stockMinimum ? parseInt(formData.stockMinimum) : 0,
+        categoryId: formData.categoryId || (editingProduct ? editingProduct.categoryId : undefined),
         isActive: formData.isActive,
         characteristics: characteristics
           .filter((c) => c.name.trim() && c.value.trim())
@@ -751,6 +755,20 @@ export default function ProductsPage() {
                     setFormData({ ...formData, stock: e.target.value })
                   }
                   required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="stockMinimum">Stock Mínimo</Label>
+                <Input
+                  id="stockMinimum"
+                  type="number"
+                  min="0"
+                  value={formData.stockMinimum}
+                  onChange={(e) =>
+                    setFormData({ ...formData, stockMinimum: e.target.value })
+                  }
+                  placeholder="0"
                 />
               </div>
             </div>
