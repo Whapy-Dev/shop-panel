@@ -67,8 +67,8 @@ interface ShopOrder {
 
 const TRANSITIONS: Record<string, string[]> = {
   pending: ['confirmed', 'cancelled'],
-  confirmed: ['preparing', 'cancelled'],
-  preparing: ['ready', 'cancelled'],
+  confirmed: ['preparing', 'ready', 'shipped', 'delivered', 'cancelled'],
+  preparing: ['ready', 'shipped', 'delivered', 'cancelled'],
   ready: ['shipped', 'delivered', 'cancelled'],
   shipped: ['delivered'],
   delivered: [],
@@ -157,8 +157,14 @@ export default function OrdersPage() {
   };
 
   const handleQuickAdvance = async (order: ShopOrder) => {
-    const nextStatuses = TRANSITIONS[order.fulfillmentStatus];
-    const nextStatus = nextStatuses?.find(s => s !== 'cancelled');
+    const quickMap: Record<string, string> = {
+      pending: 'confirmed',
+      confirmed: 'delivered',
+      preparing: 'delivered',
+      ready: 'delivered',
+      shipped: 'delivered',
+    };
+    const nextStatus = quickMap[order.fulfillmentStatus];
     if (!nextStatus) return;
     try {
       await updateFulfillmentMutation.mutateAsync({
@@ -330,15 +336,24 @@ export default function OrdersPage() {
                       </TableCell>
                       <TableCell className="text-right">
                         <div className="flex items-center justify-end gap-1">
-                          {TRANSITIONS[order.fulfillmentStatus]?.filter(s => s !== 'cancelled').length > 0 && (
+                          {order.fulfillmentStatus === 'pending' && (
                             <Button
                               size="sm"
                               onClick={() => handleQuickAdvance(order)}
                               disabled={updateFulfillmentMutation.isPending}
+                              className="bg-blue-600 hover:bg-blue-700"
                             >
-                              {FULFILLMENT_STATUS_LABELS[
-                                TRANSITIONS[order.fulfillmentStatus]?.find(s => s !== 'cancelled') || ''
-                              ] || 'Avanzar'}
+                              Confirmar
+                            </Button>
+                          )}
+                          {['confirmed', 'preparing', 'ready', 'shipped'].includes(order.fulfillmentStatus) && (
+                            <Button
+                              size="sm"
+                              onClick={() => handleQuickAdvance(order)}
+                              disabled={updateFulfillmentMutation.isPending}
+                              className="bg-emerald-600 hover:bg-emerald-700"
+                            >
+                              Entregado
                             </Button>
                           )}
                           <Button
