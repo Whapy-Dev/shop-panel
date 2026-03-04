@@ -4,8 +4,8 @@ services:
       context: .
       args:
         VITE_API_URL: https://wallmapu.whapy.com/api
-        VITE_SUPABASE_URL: https://gdfiblfkfegyqbtvcewa.supabase.co
-        VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdkZmlibGZrZmVneXFidHZjZXdhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI4ODE1MDYsImV4cCI6MjA3ODQ1NzUwNn0.8aMQCQARtOqXPv9ON7jD3RR8Efo5HWDCI0TmXkE5XTU
+        VITE_SUPABASE_URL: https://dnfsipudtujheghtmpkg.supabase.co
+        VITE_SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRuZnNpcHVkdHVqaGVnaHRtcGtnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1Nzk5MDksImV4cCI6MjA4ODE1NTkwOX0.eaIYN9YN29Wa6mgyFPstvzZmRL4xZJucF2-PBU2-BMs
     ports:
       - "3013:80"
     restart: unless-stopped
